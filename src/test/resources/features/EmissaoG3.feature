@@ -3,9 +3,10 @@
 
 Funcionalidade: Emissao G3
 
+  @CT-1
   Cenario: Realizar emissao G3 Nacional - Tarifa Light - Somente ida com sucesso
     Dado que eu esteja na home da Gol
-    E realize uma busca G3 Nacional "Somente ida" para "GRU" e "GIG" no dia "31/05/2022"
+    E realize uma busca G3 Nacional "Só ida ou Volta" para "GRU" e "GIG" no dia "31/05/2022"
     E selecione um voo com a tarifa "Light"
     E ir para o login "sem logar"
     E inserir os dados do passageiro com:

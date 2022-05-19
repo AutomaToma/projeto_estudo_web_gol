@@ -14,7 +14,7 @@ public class DriverFactory {
     private static String chromePath = "src/test/resources/webdrivers/chromedriver.exe";
 
     //criar um método que sempre cria o webdriver
-    public static void getDriver(){
+    public static WebDriver getDriver(){
 
         //criar instancia do webdriver -> Chrome
         if(driver == null) {
@@ -30,6 +30,8 @@ public class DriverFactory {
 
         //ir para o site
         driver.get("https://hom-b2c.voegol.com.br/compra");
+
+        return driver;
     }
 
     //criar um método que encerra a execução do webdriver

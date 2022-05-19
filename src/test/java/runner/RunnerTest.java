@@ -10,7 +10,8 @@ import org.junit.runner.RunWith;
         glue = {"runner", "steps"},
         monochrome = true,
         snippets = CucumberOptions.SnippetType.CAMELCASE,
-        plugin = "pretty"
+        plugin = "pretty",
+        tags = "@CT-1"
 )
 
 public class RunnerTest {
