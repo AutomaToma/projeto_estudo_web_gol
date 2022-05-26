@@ -15,9 +15,9 @@ public class EmissaoG3Step {
         homePage.validarHomePage();
     }
 
-    @Dado("realize uma busca G3 Nacional {string} para {string} e {string} no dia {string}")
-    public void realizeUmaBuscaG3NacionalParaENoDia(String tipoTrecho, String aeroportoIda, String aeroportoVolta, String data) throws InterruptedException {
-        homePage.buscarVoo(tipoTrecho, aeroportoIda, aeroportoVolta);
+    @Dado("realize uma busca G3 Nacional {string} para {string} e {string} no dia {string} e {string}")
+    public void realizeUmaBuscaG3NacionalParaENoDiaE(String tipoTrecho, String aeroportoIda, String aeroportoVolta, String dataIda, String dataVolta) {
+        homePage.buscarVoo(tipoTrecho, aeroportoIda, aeroportoVolta, dataIda, "");
     }
 
     @Dado("selecione um voo com a tarifa {string}")

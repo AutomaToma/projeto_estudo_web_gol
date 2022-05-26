@@ -7,10 +7,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utils.Utils;
 
 public class HomePage {
 
     WebDriver driver  = DriverFactory.getDriver();
+    CalendarioPage calendarioPage = new CalendarioPage();
+    Utils utils = new Utils();
+
 
     public HomePage(){
         PageFactory.initElements(driver, this);
@@ -36,6 +40,11 @@ public class HomePage {
     @FindBy(xpath = "(//label[@class='a-input__label'])[4]")
     private WebElement selectPassageiros;
 
+    @FindBy(id = "departureDate")
+    private WebElement inputDataIda;
+
+    @FindBy(id = "returnDate")
+    private WebElement inputDataVolta;
 
     // MÉTODOS
 
@@ -48,31 +57,52 @@ public class HomePage {
         Assert.assertEquals("VoeGOL | Busca de voo", driver.getTitle());
     }
 
-    public void selecionarTrecho(String tipoTrecho) throws InterruptedException {
+    public void selecionarTrecho(String tipoTrecho) {
+        utils.waitUntilIsVisible(selectTrecho, 2);
         selectTrecho.click();
+
+//        utils.sleep(2);
 
         //lista de trecho
         WebElement optionTipoTrecho = driver.findElement(By.xpath("//span[text()=' "+ tipoTrecho +" ']"));
-
         optionTipoTrecho.click();
 
     }
 
     public void digitarAeroportoOrigem(String aeroportoIda){
+        utils.sleep(1);
         inputOrigem.sendKeys(aeroportoIda);
         optionAeroporto.click();
     }
 
     public void digitarAeroportoVolta(String aeroportoVolta){
+        utils.sleep(2);
         inputDestino.sendKeys(aeroportoVolta);
         optionAeroporto.click();
     }
 
-
-    public void buscarVoo(String tipoTrecho, String aeroportoIda, String aeroportoVolta) throws InterruptedException {
+    public void buscarVoo(String tipoTrecho, String aeroportoIda, String aeroportoVolta, String dataIda, String dataVolta)  {
         selecionarTrecho(tipoTrecho);
         digitarAeroportoOrigem(aeroportoIda);
         digitarAeroportoVolta(aeroportoVolta);
+
+//        utils.sleep(1);
+
+        if (tipoTrecho.toLowerCase().equals("só ida ou volta")){
+            utils.waitUntilIsVisible(inputDataIda, 2);
+            inputDataIda.click();
+            calendarioPage.selecionarDataDeIda(dataIda);
+        }
+        else if (tipoTrecho.toLowerCase().equals("ida e volta")){
+            inputDataIda.click();
+            calendarioPage.selecionarDataDeIda(dataIda);
+            // TODO implementar selecionar data de volta
+        }
+        else{
+            // TODO implementar Multi-trecho
+        }
+
+
     }
 
 }

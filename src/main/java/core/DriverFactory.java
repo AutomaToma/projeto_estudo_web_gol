@@ -14,29 +14,29 @@ public class DriverFactory {
     private static String chromePath = "src/test/resources/webdrivers/chromedriver.exe";
 
     //criar um método que sempre cria o webdriver
-    public static WebDriver getDriver(){
+    public static WebDriver getDriver() {
 
         //criar instancia do webdriver -> Chrome
-        if(driver == null) {
+        if (driver == null) {
             System.setProperty("webdriver.chrome.driver", chromePath);
             driver = new ChromeDriver();
+
+            //configurar para abrir o navegador em tela cheia
+            driver.manage().window().maximize();
+
+            //configurar a espera implicita
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+            //ir para o site
+            driver.get("https://hom-b2c.voegol.com.br/compra");
         }
-
-        //configurar para abrir o navegador em tela cheia
-        driver.manage().window().maximize();
-
-        //configurar a espera implicita
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-        //ir para o site
-        driver.get("https://hom-b2c.voegol.com.br/compra");
 
         return driver;
     }
 
     //criar um método que encerra a execução do webdriver
-    public static void killDriver(){
-        if(driver != null){
+    public static void killDriver() {
+        if (driver != null) {
             driver.quit();
         }
     }
