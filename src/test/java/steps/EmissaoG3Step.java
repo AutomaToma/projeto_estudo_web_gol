@@ -4,11 +4,13 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
+import pages.EscolhaSeuVooPage;
 import pages.HomePage;
 
 public class EmissaoG3Step {
 
     HomePage homePage = new HomePage();
+    EscolhaSeuVooPage escolhaSeuVooPage = new EscolhaSeuVooPage();
 
     @Dado("que eu esteja na home da Gol")
     public void queEuEstejaNaHomeDaGol() {
@@ -22,7 +24,8 @@ public class EmissaoG3Step {
 
     @Dado("selecione um voo com a tarifa {string}")
     public void selecioneUmVooComATarifa(String tipoTarifa) {
-
+        escolhaSeuVooPage.validarPaginaEscolhaSeuVoo();
+        escolhaSeuVooPage.selecionarVooETarifa(tipoTarifa);
     }
 
     @Dado("ir para o login {string}")

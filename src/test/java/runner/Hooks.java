@@ -12,9 +12,9 @@ public class Hooks {
         DriverFactory.getDriver();
     }
 
-//    @After
-//    public void finalize(){
-//        DriverFactory.killDriver();
-//    }
+    @After
+    public void finalize(){
+        DriverFactory.killDriver();
+    }
 
 }

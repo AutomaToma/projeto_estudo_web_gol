@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.Utils;
 
-public class HomePage {
+public class HomePage extends BasePage{
 
     WebDriver driver  = DriverFactory.getDriver();
     CalendarioPage calendarioPage = new CalendarioPage();
@@ -46,6 +46,9 @@ public class HomePage {
     @FindBy(id = "returnDate")
     private WebElement inputDataVolta;
 
+    @FindBy(xpath = "(//button[text()=' Buscar voos '])[1]")
+    private WebElement buttonBuscarVoo;
+
     // MÉTODOS
 
     public void validarHomePage(){
@@ -58,10 +61,10 @@ public class HomePage {
     }
 
     public void selecionarTrecho(String tipoTrecho) {
-        utils.waitUntilIsVisible(selectTrecho, 2);
+        waitUntilElementVisible(selectTrecho);
         selectTrecho.click();
 
-//        utils.sleep(2);
+        espera(2);
 
         //lista de trecho
         WebElement optionTipoTrecho = driver.findElement(By.xpath("//span[text()=' "+ tipoTrecho +" ']"));
@@ -70,13 +73,13 @@ public class HomePage {
     }
 
     public void digitarAeroportoOrigem(String aeroportoIda){
-        utils.sleep(1);
+        espera(1);
         inputOrigem.sendKeys(aeroportoIda);
         optionAeroporto.click();
     }
 
     public void digitarAeroportoVolta(String aeroportoVolta){
-        utils.sleep(2);
+        espera(2);
         inputDestino.sendKeys(aeroportoVolta);
         optionAeroporto.click();
     }
@@ -86,10 +89,11 @@ public class HomePage {
         digitarAeroportoOrigem(aeroportoIda);
         digitarAeroportoVolta(aeroportoVolta);
 
-//        utils.sleep(1);
+//        espera(1);
 
         if (tipoTrecho.toLowerCase().equals("só ida ou volta")){
-            utils.waitUntilIsVisible(inputDataIda, 2);
+//            esperarElementoEstarVisivel(inputDataIda, 5);
+            espera(3);
             inputDataIda.click();
             calendarioPage.selecionarDataDeIda(dataIda);
         }
@@ -102,6 +106,8 @@ public class HomePage {
             // TODO implementar Multi-trecho
         }
 
+        esperarElementoEstarVisivel(buttonBuscarVoo, 5);
+        buttonBuscarVoo.click();
 
     }
 
