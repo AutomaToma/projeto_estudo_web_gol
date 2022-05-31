@@ -7,9 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import utils.Utils;
 
-import java.text.ParseException;
-
-public class CalendarioPage {
+public class CalendarioPage extends BasePage{
 
     private WebDriver driver = DriverFactory.getDriver();
     private Utils utils = new Utils();
@@ -27,7 +25,8 @@ public class CalendarioPage {
         ;
 
 //        utils.sleep(1);
-        utils.waitUntilIsVisible(btnProximo, 1);
+//        utils.waitUntilIsVisible(btnProximo, 1);
+        esperarElementoEstarVisivel(driver,btnProximo,10);
         utils.scrollDown();
 
         // Verificar se o mês está visivel - Se não estiver visivel avança pro próximo mês

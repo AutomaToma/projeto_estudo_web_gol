@@ -3,6 +3,7 @@ package utils;
 import core.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -50,10 +51,11 @@ public class Utils {
         return dataFormatada; // Maio 2022
     }
 
-    public void waitUntilIsVisible(WebElement element, int timeout){
-        WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), timeout);
-        WebElement elementToWait = wait.until(ExpectedConditions.visibilityOf(element));
-    }
+//    public void waitUntilIsVisible(WebElement element, int timeout){
+//        WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), timeout);
+//        WebElement elementToWait = wait.until(ExpectedConditions.visibilityOf(element));
+//    }
+
 
 
 }

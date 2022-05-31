@@ -61,7 +61,8 @@ public class HomePage extends BasePage{
     }
 
     public void selecionarTrecho(String tipoTrecho) {
-        waitUntilElementVisible(selectTrecho);
+//        waitUntilElementVisible(selectTrecho);
+        esperarElementoEstarClicavel(driver,selectTrecho,10);
         selectTrecho.click();
 
         espera(2);
@@ -93,6 +94,7 @@ public class HomePage extends BasePage{
 
         if (tipoTrecho.toLowerCase().equals("só ida ou volta")){
 //            esperarElementoEstarVisivel(inputDataIda, 5);
+            esperarElementoEstarVisivel(driver,inputDataIda,10);
             espera(3);
             inputDataIda.click();
             calendarioPage.selecionarDataDeIda(dataIda);
@@ -106,7 +108,8 @@ public class HomePage extends BasePage{
             // TODO implementar Multi-trecho
         }
 
-        esperarElementoEstarVisivel(buttonBuscarVoo, 5);
+//        esperarElementoEstarVisivel(buttonBuscarVoo, 5);
+        esperarElementoEstarVisivel(driver,buttonBuscarVoo,10);
         buttonBuscarVoo.click();
 
     }
