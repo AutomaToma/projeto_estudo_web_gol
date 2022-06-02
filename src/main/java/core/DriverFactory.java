@@ -4,6 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class DriverFactory {
@@ -27,7 +28,7 @@ public class DriverFactory {
             driver.manage().window().maximize();
 
             //configurar a espera implicita
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 
             //ir para o site
             driver.get("https://hom-b2c.voegol.com.br/compra");

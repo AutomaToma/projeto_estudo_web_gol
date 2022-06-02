@@ -6,11 +6,13 @@ import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 import pages.EscolhaSeuVooPage;
 import pages.HomePage;
+import pages.SeusDadosPage;
 
 public class EmissaoG3Step {
 
     HomePage homePage = new HomePage();
     EscolhaSeuVooPage escolhaSeuVooPage = new EscolhaSeuVooPage();
+    SeusDadosPage seusDadosPage = new SeusDadosPage();
 
     @Dado("que eu esteja na home da Gol")
     public void queEuEstejaNaHomeDaGol() {
@@ -30,7 +32,9 @@ public class EmissaoG3Step {
 
     @Dado("ir para o login {string}")
     public void irParaOLogin(String tipoLogin) {
-
+        seusDadosPage.validarSeusDadosPage();
+        seusDadosPage.selecionarSemLogin();
+        seusDadosPage.clicarIrParaDadosDoPassageiro();
     }
 
     @Dado("inserir os dados do passageiro com:")

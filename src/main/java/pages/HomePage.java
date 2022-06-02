@@ -93,8 +93,7 @@ public class HomePage extends BasePage{
 //        espera(1);
 
         if (tipoTrecho.toLowerCase().equals("só ida ou volta")){
-//            esperarElementoEstarVisivel(inputDataIda, 5);
-            esperarElementoEstarVisivel(driver,inputDataIda,10);
+//            esperarElementoEstarVisivel(driver,inputDataIda,10);
             espera(3);
             inputDataIda.click();
             calendarioPage.selecionarDataDeIda(dataIda);
@@ -107,9 +106,8 @@ public class HomePage extends BasePage{
         else{
             // TODO implementar Multi-trecho
         }
-
-//        esperarElementoEstarVisivel(buttonBuscarVoo, 5);
-        esperarElementoEstarVisivel(driver,buttonBuscarVoo,10);
+//        esperarElementoEstarVisivel(driver,buttonBuscarVoo,10);
+        espera(3);
         buttonBuscarVoo.click();
 
     }
