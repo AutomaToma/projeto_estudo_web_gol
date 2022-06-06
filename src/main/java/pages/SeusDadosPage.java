@@ -37,8 +37,8 @@ public class SeusDadosPage extends BasePage {
     }
 
     public void selecionarSemLogin(){
-//        esperarElementoEstarVisivel(driver,radioContinuarSemLogin,10);
-        espera(5);
+        esperarElementoEstarVisivel(radioContinuarSemLogin,20);
+//        espera(5);
         radioContinuarSemLogin.click();
     }
 

@@ -61,14 +61,14 @@ public class HomePage extends BasePage{
     }
 
     public void selecionarTrecho(String tipoTrecho) {
-//        waitUntilElementVisible(selectTrecho);
         esperarElementoEstarClicavel(driver,selectTrecho,10);
         selectTrecho.click();
 
         espera(2);
 
         //lista de trecho
-        WebElement optionTipoTrecho = driver.findElement(By.xpath("//span[text()=' "+ tipoTrecho +" ']"));
+        WebElement optionTipoTrecho = driver.findElement(By.xpath("//span[contains(text(),' "+ tipoTrecho +" ')]")); //antigo://span[text()=' Só ida ou Volta ']}]
+
         optionTipoTrecho.click();
 
     }
@@ -93,8 +93,8 @@ public class HomePage extends BasePage{
 //        espera(1);
 
         if (tipoTrecho.toLowerCase().equals("só ida ou volta")){
-//            esperarElementoEstarVisivel(driver,inputDataIda,10);
-            espera(3);
+            esperarElementoEstarVisivel(inputDataIda,10);
+//            espera(3);
             inputDataIda.click();
             calendarioPage.selecionarDataDeIda(dataIda);
         }
@@ -106,8 +106,8 @@ public class HomePage extends BasePage{
         else{
             // TODO implementar Multi-trecho
         }
-//        esperarElementoEstarVisivel(driver,buttonBuscarVoo,10);
-        espera(3);
+        esperarElementoEstarVisivel(buttonBuscarVoo,10);
+//        espera(3);
         buttonBuscarVoo.click();
 
     }
