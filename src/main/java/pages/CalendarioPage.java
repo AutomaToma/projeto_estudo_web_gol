@@ -25,8 +25,7 @@ public class CalendarioPage extends BasePage{
         ;
 
 //        utils.sleep(1);
-//        utils.waitUntilIsVisible(btnProximo, 1);
-        esperarElementoEstarVisivel(driver,btnProximo,10);
+        esperarElementoEstarVisivel(btnProximo,10);
         utils.scrollDown();
 
         // Verificar se o mês está visivel - Se não estiver visivel avança pro próximo mês

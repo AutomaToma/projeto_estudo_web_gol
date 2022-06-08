@@ -10,6 +10,8 @@ import java.time.Duration;
 
 public class BasePage {
 
+    WebDriver driver  = DriverFactory.getDriver();
+
     public void espera(int segundos) {
         try {
             Thread.sleep(segundos * 1000);
@@ -19,9 +21,23 @@ public class BasePage {
     }
 
     /* Usado para Text, check ou radio*/
-    public void esperarElementoEstarVisivel(WebDriver driver, WebElement webElement, int seconds) {
-       WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
-       wait.until(ExpectedConditions.visibilityOf(webElement));
+//    public void esperarElementoEstarVisivel(WebDriver driver, WebElement webElement, int seconds) {
+//       WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+//       wait.until(ExpectedConditions.visibilityOf(webElement));
+//    }
+
+//    OUTRAS FORMAS DE ESPERA
+
+    public boolean esperarElementoEstarVisivel(WebElement webElement, int seconds) {
+        boolean result = false;
+        try{
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+            wait.until(ExpectedConditions.visibilityOf(webElement));
+            result = true;
+        } catch (Exception e) {
+            espera(3);
+        }
+        return result;
     }
 
     /* Usado para Links e botões*/

@@ -31,8 +31,8 @@ public class EscolhaSeuVooPage extends BasePage {
     // ------ MÉTODOS ------
 
     public void validarPaginaEscolhaSeuVoo() {
-//        esperarElementoEstarVisivel(driver, titleEscolhaSeuVoo, 10);
-        espera(2);
+        esperarElementoEstarVisivel(titleEscolhaSeuVoo, 10);
+//        espera(2);
         Assert.assertTrue(titleEscolhaSeuVoo.getText().contains("Escolha o seu voo"));
     }
 
