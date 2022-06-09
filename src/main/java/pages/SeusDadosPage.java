@@ -28,7 +28,6 @@ public class SeusDadosPage extends BasePage {
     @FindBy(xpath = "//button[contains(text(),'Ir para dados')]")
     private WebElement btnIrParaDadosDoPassageiro;
 
-
     //MÉTODOS
 
     public void validarSeusDadosPage(){
@@ -38,7 +37,7 @@ public class SeusDadosPage extends BasePage {
 
     public void selecionarSemLogin(){
         esperarElementoEstarVisivel(radioContinuarSemLogin,20);
-//        espera(5);
+        espera(5);
         radioContinuarSemLogin.click();
     }
 

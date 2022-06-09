@@ -28,7 +28,7 @@ public class DriverFactory {
             driver.manage().window().maximize();
 
             //configurar a espera implicita
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45));
 
             //ir para o site
             driver.get("https://hom-b2c.voegol.com.br/compra");
