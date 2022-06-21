@@ -31,7 +31,8 @@ public class DriverFactory {
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 
             //ir para o site
-            driver.get("https://hom-b2c.voegol.com.br/compra");
+            //driver.get("https://hom-b2c.voegol.com.br/compra");
+            driver.get("https://b2c.voegol.com.br/compra");
         }
 
         return driver;
