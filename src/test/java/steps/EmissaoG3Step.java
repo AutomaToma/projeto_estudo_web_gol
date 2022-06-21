@@ -4,6 +4,7 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
+import pages.AssentosPage;
 import pages.EscolhaSeuVooPage;
 import pages.HomePage;
 import pages.SeusDadosPage;
@@ -13,6 +14,7 @@ public class EmissaoG3Step {
     HomePage homePage = new HomePage();
     EscolhaSeuVooPage escolhaSeuVooPage = new EscolhaSeuVooPage();
     SeusDadosPage seusDadosPage = new SeusDadosPage();
+    AssentosPage assentosPage = new AssentosPage();
 
     @Dado("que eu esteja na home da Gol")
     public void queEuEstejaNaHomeDaGol() {
@@ -44,6 +46,8 @@ public class EmissaoG3Step {
 
     @Quando("selecionar o assento")
     public void selecionarOAssento() {
+        assentosPage.validarPagina();
+        assentosPage.escolherAssentos();
 
     }
 
