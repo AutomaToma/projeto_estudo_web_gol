@@ -1,6 +1,8 @@
 package pages;
 
 import core.DriverFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,6 +13,7 @@ import java.time.Duration;
 public class BasePage {
 
     WebDriver driver  = DriverFactory.getDriver();
+    JavascriptExecutor js = (JavascriptExecutor) driver;
 
     public void espera(int segundos) {
         try {
@@ -21,12 +24,6 @@ public class BasePage {
     }
 
     /* Usado para Text, check ou radio*/
-//    public void esperarElementoEstarVisivel(WebDriver driver, WebElement webElement, int seconds) {
-//       WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
-//       wait.until(ExpectedConditions.visibilityOf(webElement));
-//    }
-
-//    OUTRAS FORMAS DE ESPERA
 
     public boolean esperarElementoEstarVisivel(WebElement webElement, int seconds) {
         boolean result = false;
@@ -41,9 +38,37 @@ public class BasePage {
     }
 
     /* Usado para Links e botões*/
-    public void esperarElementoEstarClicavel(WebDriver driver, WebElement webElement, int seconds) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
-        wait.until(ExpectedConditions.elementToBeClickable(webElement));
 
+    public boolean esperarElementoEstarClicavel(WebElement webElement, int seconds) {
+        boolean result = false;
+        try{
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+            wait.until(ExpectedConditions.elementToBeClickable(webElement));
+            result = true;
+        } catch (Exception e) {
+            espera(3);
+        }
+        return result;
     }
+
+    /* -----------METODOS SCROLL----------- */
+//ROLAR X PIXELS BAIXO 0,250 CIMA 0,-250
+    public void RolarParaBaixo(){
+        js.executeScript("window.scrollBy(0.-350)","");
+        System.out.println("Scroll de -350 pixels" );
+    }
+
+    public void rolarPara(WebElement element){
+        js.executeScript("arguments[0].scrollIntoView();", element);
+
+        int index1 = element.toString().indexOf("id: ");
+        System.out.println("Scroll para o elemento: "+ element.toString().substring(index1).replace("]","") );
+    }
+
+    public void rolarParaTexto(String texto) {
+        js.executeScript("arguments[0].scrollIntoView(true)", driver.findElement(By.partialLinkText(texto)));
+        System.out.println("Scroll para o texto: "+ texto );
+    }
+    /* ---------------------- */
+
 }
