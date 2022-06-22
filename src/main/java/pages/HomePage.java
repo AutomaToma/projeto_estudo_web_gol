@@ -61,7 +61,7 @@ public class HomePage extends BasePage{
     }
 
     public void selecionarTrecho(String tipoTrecho) {
-        esperarElementoEstarClicavel(driver,selectTrecho,10);
+        esperarElementoEstarClicavel(selectTrecho,10);
         selectTrecho.click();
 
         espera(2);
