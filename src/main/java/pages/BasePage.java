@@ -52,8 +52,9 @@ public class BasePage {
     }
 
     /* -----------METODOS SCROLL----------- */
+
 //ROLAR X PIXELS BAIXO 0,250 CIMA 0,-250
-    public void RolarParaBaixo(){
+    public void rolarParaBaixo(){
         js.executeScript("window.scrollBy(0.-350)","");
         System.out.println("Scroll de -350 pixels" );
     }
