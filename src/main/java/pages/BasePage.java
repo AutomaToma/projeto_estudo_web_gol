@@ -55,8 +55,8 @@ public class BasePage {
 
 //ROLAR X PIXELS BAIXO 0,250 CIMA 0,-250
     public void rolarParaBaixo(){
-        js.executeScript("window.scrollBy(0.-350)","");
-        System.out.println("Scroll de -350 pixels" );
+        js.executeScript("window.scrollBy(0, 450)");
+        System.out.println("Scroll de 350 pixels" );
     }
 
     public void rolarPara(WebElement element){
@@ -71,5 +71,17 @@ public class BasePage {
         System.out.println("Scroll para o texto: "+ texto );
     }
     /* ---------------------- */
+
+    /* ----------- MODAL ----------- */
+    public void aguardarModalSairDaTela(){
+        WebElement modal = driver.findElement(By.xpath("//span[contains(@class, 'a-icon a-icon--bf-airplane m-airplane-load__icon m-airplane-load__icon--animation')]"));
+
+        while (modal.isDisplayed()){
+            System.out.println("Modal sendo apresentado...");
+        }
+
+        espera(12);
+
+    }
 
 }

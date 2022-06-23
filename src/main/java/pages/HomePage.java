@@ -61,7 +61,9 @@ public class HomePage extends BasePage{
     }
 
     public void selecionarTrecho(String tipoTrecho) {
-        esperarElementoEstarClicavel(selectTrecho,10);
+        //aguardarModalSairDaTela();
+        //esperarElementoEstarClicavel(selectTrecho,10);
+        espera(2);
         selectTrecho.click();
 
         espera(2);
@@ -90,11 +92,11 @@ public class HomePage extends BasePage{
         digitarAeroportoOrigem(aeroportoIda);
         digitarAeroportoVolta(aeroportoVolta);
 
-//        espera(1);
+        espera(1);
 
         if (tipoTrecho.toLowerCase().equals("só ida ou volta")){
             esperarElementoEstarVisivel(inputDataIda,10);
-//            espera(3);
+            espera(3);
             inputDataIda.click();
             calendarioPage.selecionarDataDeIda(dataIda);
         }
@@ -106,8 +108,9 @@ public class HomePage extends BasePage{
         else{
             // TODO implementar Multi-trecho
         }
+        //aguardarModalSairDaTela();
         esperarElementoEstarVisivel(buttonBuscarVoo,10);
-//        espera(3);
+        esperarElementoEstarClicavel(buttonBuscarVoo,10);
         buttonBuscarVoo.click();
 
     }
