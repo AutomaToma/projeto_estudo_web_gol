@@ -31,11 +31,13 @@ public class SeusDadosPage extends BasePage {
     //MÉTODOS
 
     public void validarSeusDadosPage(){
+        espera(2);
         Assert.assertEquals("Para continuar se\n" +
                 "identifique",tituloPagina.getText());
     }
 
     public void selecionarSemLogin(){
+        aguardarModalSairDaTela();
         esperarElementoEstarVisivel(radioContinuarSemLogin,20);
         espera(5);
         radioContinuarSemLogin.click();
