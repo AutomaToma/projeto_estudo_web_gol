@@ -4,16 +4,14 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
-import pages.AssentosPage;
-import pages.EscolhaSeuVooPage;
-import pages.HomePage;
-import pages.SeusDadosPage;
+import pages.*;
 
 public class EmissaoG3Step {
 
     HomePage homePage = new HomePage();
     EscolhaSeuVooPage escolhaSeuVooPage = new EscolhaSeuVooPage();
     SeusDadosPage seusDadosPage = new SeusDadosPage();
+    DadosPassageiro dadosPassageiroPage = new DadosPassageiro();
     AssentosPage assentosPage = new AssentosPage();
 
     @Dado("que eu esteja na home da Gol")
@@ -41,7 +39,8 @@ public class EmissaoG3Step {
 
     @Dado("inserir os dados do passageiro com:")
     public void inserirOsDadosDoPassageiroCom(DataTable dataTable) {
-
+        dadosPassageiroPage.validarPaginaDadosPassageiro();
+        dadosPassageiroPage.preencherDadosDoPassageiro(dataTable);
     }
 
     @Quando("selecionar o assento")

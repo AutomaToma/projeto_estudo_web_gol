@@ -31,15 +31,16 @@ public class EscolhaSeuVooPage extends BasePage {
     // ------ MÉTODOS ------
 
     public void validarPaginaEscolhaSeuVoo() {
+        aguardarModalSairDaTela();
         esperarElementoEstarVisivel(titleEscolhaSeuVoo, 10);
-//        espera(2);
+        espera(2);
         Assert.assertTrue(titleEscolhaSeuVoo.getText().contains("Escolha o seu voo"));
     }
 
     public void selecionarVooETarifa(String tarifa) {
         cardVoo.click();
 
-        espera(4);
+        espera(6);
 
         WebElement cardVooETarifa = DriverFactory.getDriver().findElement(By.xpath("(//h2[text()='" + tarifa + "']//following::div[@class='m-card__body'][1]//span)[1]"));
 
@@ -50,8 +51,8 @@ public class EscolhaSeuVooPage extends BasePage {
             cardVooETarifa.click();
             buttonContinuarParaLogin.click();
         }
-
-        espera(5);
+        aguardarModalSairDaTela();
+        //espera(5);
     }
 
 
