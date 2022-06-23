@@ -27,7 +27,7 @@ public class CalendarioPage extends BasePage {
 //        utils.sleep(1);
         esperarElementoEstarVisivel(btnProximo, 10);
         utils.sleep(2);
-        utils.scrollDown();
+        rolarParaBaixo();
 
         // Verificar se o mês está visivel - Se não estiver visivel avança pro próximo mês
 //        while (!mesCalendario1.getText().contains(dataFormatada) && !mesCalendario2.getText().contains(dataFormatada)) {
@@ -42,6 +42,7 @@ public class CalendarioPage extends BasePage {
             if (!mesCalendario1.getText().contains(dataFormatada)) {
                 btnProximo.click();
                 utils.sleep(2);
+                rolarParaBaixo();
             } else {
                 return;
             }

@@ -52,7 +52,7 @@ public class HomePage extends BasePage{
     // MÉTODOS
 
     public void validarHomePage(){
-
+        espera(2);
         if(buttonAceitarTermos.isDisplayed()){
             buttonAceitarTermos.click();
         }
@@ -76,13 +76,13 @@ public class HomePage extends BasePage{
     }
 
     public void digitarAeroportoOrigem(String aeroportoIda){
-        espera(1);
+        espera(4);
         inputOrigem.sendKeys(aeroportoIda);
         optionAeroporto.click();
     }
 
     public void digitarAeroportoVolta(String aeroportoVolta){
-        espera(2);
+        espera(4);
         inputDestino.sendKeys(aeroportoVolta);
         optionAeroporto.click();
     }

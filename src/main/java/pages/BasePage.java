@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.WheelInput;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -13,7 +15,7 @@ import java.time.Duration;
 public class BasePage {
 
     WebDriver driver  = DriverFactory.getDriver();
-    JavascriptExecutor js = (JavascriptExecutor) driver;
+    JavascriptExecutor js;
 
     public void espera(int segundos) {
         try {
@@ -53,24 +55,21 @@ public class BasePage {
 
     /* -----------METODOS SCROLL----------- */
 
-//ROLAR X PIXELS BAIXO 0,250 CIMA 0,-250
+    public void rolarAteOElemento(WebElement elemento){
+        WheelInput.ScrollOrigin scrollOrigin = WheelInput.ScrollOrigin.fromElement(elemento, 0, -50);
+        new Actions(driver)
+                .scrollFromOrigin(scrollOrigin,0, 400)
+                .perform();
+        System.out.println("Rolou 400 pixels até o elemento...");
+    }
+
     public void rolarParaBaixo(){
-        js.executeScript("window.scrollBy(0, 450)");
-        System.out.println("Scroll de 350 pixels" );
+        WheelInput.ScrollOrigin scrollOrigin = WheelInput.ScrollOrigin.fromViewport(10, 10);
+        new Actions(driver)
+                .scrollFromOrigin(scrollOrigin, 0, 400)
+                .perform();
+        System.out.println("Rolou 400 pixels para baixo...");
     }
-
-    public void rolarPara(WebElement element){
-        js.executeScript("arguments[0].scrollIntoView();", element);
-
-        int index1 = element.toString().indexOf("id: ");
-        System.out.println("Scroll para o elemento: "+ element.toString().substring(index1).replace("]","") );
-    }
-
-    public void rolarParaTexto(String texto) {
-        js.executeScript("arguments[0].scrollIntoView(true)", driver.findElement(By.partialLinkText(texto)));
-        System.out.println("Scroll para o texto: "+ texto );
-    }
-    /* ---------------------- */
 
     /* ----------- MODAL ----------- */
     public void aguardarModalSairDaTela(){
