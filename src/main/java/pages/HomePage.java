@@ -69,7 +69,7 @@ public class HomePage extends BasePage{
         espera(2);
 
         //lista de trecho
-        WebElement optionTipoTrecho = driver.findElement(By.xpath("//span[contains(text(),' "+ tipoTrecho +" ')]")); //antigo://span[text()=' Só ida ou Volta ']}]
+        WebElement optionTipoTrecho = driver.findElement(By.xpath("//span[contains(text(),'"+ tipoTrecho +"')]")); //antigo://span[text()=' Só ida ou Volta ']}]
 
         optionTipoTrecho.click();
 

@@ -56,11 +56,23 @@ public class BasePage {
     /* -----------METODOS SCROLL----------- */
 
     public void rolarAteOElemento(WebElement elemento){
-        WheelInput.ScrollOrigin scrollOrigin = WheelInput.ScrollOrigin.fromElement(elemento, 0, -50);
-        new Actions(driver)
-                .scrollFromOrigin(scrollOrigin,0, 400)
-                .perform();
-        System.out.println("Rolou 400 pixels até o elemento...");
+        try {
+            //Espera o elemento antes de rolar até o mesmo
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+            wait.until(ExpectedConditions.visibilityOf(elemento));
+
+            //Rola até o elemento
+            Actions actions = new Actions(driver);
+            actions.scrollToElement(elemento);
+            actions.perform();
+
+            int index1 = elemento.toString().indexOf("->");
+            System.out.println("Scroll para o elemento: " + elemento.toString().substring(index1).replace("]", ""));
+        }catch (Exception e){
+            System.out.println("Não foi possível rolar até o elemento ");
+
+        }
+
     }
 
     public void rolarParaBaixo(){
