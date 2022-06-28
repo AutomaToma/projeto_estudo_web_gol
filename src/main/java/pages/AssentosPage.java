@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class AssentosPage {
+public class AssentosPage extends BasePage {
     WebDriver driver = DriverFactory.getDriver();
 
 
@@ -42,6 +42,7 @@ public class AssentosPage {
     //MÉTODOS
 
     public void validarPagina() {
+        aguardarModalSairDaTela();
         Assert.assertEquals("Escolha os assentos", tituloEscolhaAssentos.getText());
     }
 

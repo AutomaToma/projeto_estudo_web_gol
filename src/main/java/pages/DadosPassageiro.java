@@ -49,6 +49,9 @@ public class DadosPassageiro extends BasePage {
     @FindBy(xpath = "//fieldset[@aria-controls='select-typeDocument']")
     private WebElement tipoDocumento;
 
+    @FindBy(xpath = "//input[@id='numberDocument']")
+    private WebElement numeroDocumento;
+
     @FindBy(xpath = "//input[@id='document']")
     private WebElement cpf;
 
@@ -58,7 +61,7 @@ public class DadosPassageiro extends BasePage {
     @FindBy(xpath = "//input[@id='cellPhone']")
     private WebElement DDDcelular;
 
-    @FindBy(xpath = "//label[contains(text(), 'Li e estou de ')]")
+    @FindBy(xpath = "//label[contains(text(),' Li e estou de acordo com a  ')]")
     private WebElement liEEstouDeAcordo;
 
     @FindBy(xpath = "//label[contains(text(), 'Não quero informar')]")
@@ -85,16 +88,33 @@ public class DadosPassageiro extends BasePage {
                 opcaoDocumento = driver.findElement(By.xpath("//button[contains(text(), '" + listaDados.get(1).get(4) + "')]"));
         //opcaoPais = driver.findElement(By.xpath("//button[contains(text(), '"+listaDados.get(1).get(4)+"')]"))
 
-        espera(5);
-        rolarAteOElemento(cpf);
+        espera(4);
 
         genero.click();
         opcaoGenero.click();
 
+        rolarParaBaixo();
+        esperarElementoEstarVisivel(tipoDocumento, 10);
+
         tipoDocumento.click();
         opcaoDocumento.click();
 
+        numeroDocumento.sendKeys(listaDados.get(1).get(5));
+        cpf.sendKeys(listaDados.get(1).get(6));
+        email.sendKeys(listaDados.get(1).get(7));
+        DDDcelular.sendKeys(listaDados.get(1).get(8));
 
+        rolarParaBaixo();
+        espera(2);
+        //liEEstouDeAcordo.click();
+
+        rolarAteOElemento(naoInformarContatpoEmergencia);
+        rolarParaBaixo();
+        espera(2);
+        naoInformarContatpoEmergencia.click();
+
+        esperarElementoEstarClicavel(btnSelecaoDeAssento, 200);
+        btnSelecaoDeAssento.click();
     }
 
 

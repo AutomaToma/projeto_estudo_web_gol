@@ -11,7 +11,7 @@ Funcionalidade: Emissao G3
     E ir para o login "sem logar"
     E inserir os dados do passageiro com:
       | nome   | sobrenome | dataNascimento | genero    | documento | numeroDocumento | cpf         | email           | celular     |
-      | Hudson | Edson     | 01/01/1991     | Masculino | RG        | 131673788       | 00000000000 | teste@teste.com | 11998989898 |
+      | Hudson | Edson     | 01/01/1991     | Masculino | RG        | 131673788       | 98877831707 | teste@teste.com | 11998989898 |
     Quando selecionar o assento
     E na personalizacao "avançar para resumo"
     Entao no resumo deve ser validado os dados e valores do voo selecionado
