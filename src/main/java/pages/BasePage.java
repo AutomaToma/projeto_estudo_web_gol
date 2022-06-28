@@ -1,10 +1,7 @@
 package pages;
 
 import core.DriverFactory;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.WheelInput;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -63,11 +60,12 @@ public class BasePage {
 
             //Rola até o elemento
             Actions actions = new Actions(driver);
-            actions.scrollToElement(elemento);
+//            actions.scrollToElement(elemento);
+            actions.scrollFromOrigin(WheelInput.ScrollOrigin.fromElement(elemento), 0, 400);
             actions.perform();
 
-            int index1 = elemento.toString().indexOf("->");
-            System.out.println("Scroll para o elemento: " + elemento.toString().substring(index1).replace("]", ""));
+//            int index1 = elemento.toString().indexOf("->");
+//            System.out.println("Scroll para o elemento: " + elemento.toString().substring(index1).replace("]", ""));
         }catch (Exception e){
             System.out.println("Não foi possível rolar até o elemento ");
 
@@ -76,11 +74,12 @@ public class BasePage {
     }
 
     public void rolarParaBaixo(){
+
         WheelInput.ScrollOrigin scrollOrigin = WheelInput.ScrollOrigin.fromViewport(10, 10);
         new Actions(driver)
-                .scrollFromOrigin(scrollOrigin, 0, 400)
+                .scrollFromOrigin(scrollOrigin, 0, 800)
                 .perform();
-        System.out.println("Rolou 400 pixels para baixo...");
+        System.out.println("Rolou 800 pixels para baixo...");
     }
 
     /* ----------- MODAL ----------- */
@@ -89,10 +88,13 @@ public class BasePage {
 
         while (modal.isDisplayed()){
             System.out.println("Modal sendo apresentado...");
+
+            if(!modal.isDisplayed()){
+                return;
+            }
         }
 
-        espera(12);
-
+        espera(3);
     }
 
 }

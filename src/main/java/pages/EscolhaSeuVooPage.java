@@ -45,7 +45,8 @@ public class EscolhaSeuVooPage extends BasePage {
         WebElement cardVooETarifa = DriverFactory.getDriver().findElement(By.xpath("(//h2[text()='" + tarifa + "']//following::div[@class='m-card__body'][1]//span)[1]"));
 
         if(cardVooETarifa.getText().contains("Tarifa selecionada")){
-            esperarElementoEstarClicavel(buttonContinuarParaLogin, 30);
+            esperarElementoEstarVisivel(buttonContinuarParaLogin, 80);
+            esperarElementoEstarClicavel(buttonContinuarParaLogin, 80);
             buttonContinuarParaLogin.click();
         }else {
             espera(2);
