@@ -7,10 +7,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utils.Utils;
+
+import java.util.List;
 
 public class EscolhaSeuVooPage extends BasePage {
 
     private WebDriver driver = DriverFactory.getDriver();
+    Utils utils = new Utils();
 
     public EscolhaSeuVooPage() {
         PageFactory.initElements(driver, this);
@@ -28,6 +32,9 @@ public class EscolhaSeuVooPage extends BasePage {
     private WebElement buttonContinuarParaLogin;
 
 
+    @FindBy(xpath = "//div[contains(@aria-controls,'flight-')]")
+    private List<WebElement> listaDeVoos;
+
     // ------ MÉTODOS ------
 
     public void validarPaginaEscolhaSeuVoo() {
@@ -38,17 +45,41 @@ public class EscolhaSeuVooPage extends BasePage {
     }
 
     public void selecionarVooETarifa(String tarifa) {
+        espera(2);
+
+        int indice = 0;
+
+        System.out.println("=======================================================================");
+
+        for (int i = 0; i <= listaDeVoos.size(); i++) {
+            System.out.println(i + " ==> " + listaDeVoos.get(i).getText());
+
+            if (listaDeVoos.get(i).getText().contains("3 paradas")) {
+                indice = i+1;
+                System.out.println("ENCONTRADO NO INDICE " + indice);
+                break;
+            }
+        }
+
+        System.out.println("=======================================================================");
+
+        WebElement cardVoo = DriverFactory.getDriver().findElement(By.xpath("(//div[contains(@aria-controls,'flight-')])["+indice+"]//div[contains(@class,'m-bar-product--border-bottom')][1]"));
+
+        scrollToElement(cardVoo);
+
+        espera(2);
         cardVoo.click();
 
-        espera(6);
+        scrollToElement(cardVoo);
+        espera(2);
+        WebElement cardVooETarifa = DriverFactory.getDriver().findElement(By.xpath("(//h2[text()='" + tarifa + "']//following::div[@class='m-card__body'][1]//label)[" + indice + "]"));
+        rolarParaBaixo();
 
-        WebElement cardVooETarifa = DriverFactory.getDriver().findElement(By.xpath("(//h2[text()='" + tarifa + "']//following::div[@class='m-card__body'][1]//span)[1]"));
-
-        if(cardVooETarifa.getText().contains("Tarifa selecionada")){
+        if (cardVooETarifa.getText().equals("Tarifa selecionada")) {
             esperarElementoEstarVisivel(buttonContinuarParaLogin, 80);
             esperarElementoEstarClicavel(buttonContinuarParaLogin, 80);
             buttonContinuarParaLogin.click();
-        }else {
+        } else {
             espera(2);
             cardVooETarifa.click();
             buttonContinuarParaLogin.click();

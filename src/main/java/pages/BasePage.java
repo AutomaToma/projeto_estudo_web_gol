@@ -11,7 +11,7 @@ import java.time.Duration;
 
 public class BasePage {
 
-    WebDriver driver  = DriverFactory.getDriver();
+    WebDriver driver = DriverFactory.getDriver();
     JavascriptExecutor js;
 
     public void espera(int segundos) {
@@ -26,7 +26,7 @@ public class BasePage {
 
     public boolean esperarElementoEstarVisivel(WebElement webElement, int seconds) {
         boolean result = false;
-        try{
+        try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
             wait.until(ExpectedConditions.visibilityOf(webElement));
             result = true;
@@ -40,7 +40,7 @@ public class BasePage {
 
     public boolean esperarElementoEstarClicavel(WebElement webElement, int seconds) {
         boolean result = false;
-        try{
+        try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
             wait.until(ExpectedConditions.elementToBeClickable(webElement));
             result = true;
@@ -52,28 +52,30 @@ public class BasePage {
 
     /* -----------METODOS SCROLL----------- */
 
-    public void rolarAteOElemento(WebElement elemento){
+    public void rolarAteOElemento(WebElement elemento) {
         try {
             //Espera o elemento antes de rolar até o mesmo
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
             wait.until(ExpectedConditions.visibilityOf(elemento));
 
             //Rola até o elemento
             Actions actions = new Actions(driver);
-//            actions.scrollToElement(elemento);
             actions.scrollFromOrigin(WheelInput.ScrollOrigin.fromElement(elemento), 0, 400);
             actions.perform();
 
-//            int index1 = elemento.toString().indexOf("->");
-//            System.out.println("Scroll para o elemento: " + elemento.toString().substring(index1).replace("]", ""));
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Não foi possível rolar até o elemento ");
 
         }
 
     }
 
-    public void rolarParaBaixo(){
+    public void scrollToElement(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    public void rolarParaBaixo() {
 
         WheelInput.ScrollOrigin scrollOrigin = WheelInput.ScrollOrigin.fromViewport(10, 10);
         new Actions(driver)
@@ -82,19 +84,32 @@ public class BasePage {
         System.out.println("Rolou 800 pixels para baixo...");
     }
 
+    public void rolarParaBaixo(int x, int y) {
+
+        WheelInput.ScrollOrigin scrollOrigin = WheelInput.ScrollOrigin.fromViewport(10, 10);
+        new Actions(driver)
+                .scrollFromOrigin(scrollOrigin, x, y)
+                .perform();
+        System.out.println("Rolou 800 pixels para baixo...");
+    }
+
+
     /* ----------- MODAL ----------- */
-    public void aguardarModalSairDaTela(){
+    public void aguardarModalSairDaTela() {
         WebElement modal = driver.findElement(By.xpath("//span[contains(@class, 'a-icon a-icon--bf-airplane m-airplane-load__icon m-airplane-load__icon--animation')]"));
 
-        while (modal.isDisplayed()){
-            System.out.println("Modal sendo apresentado...");
+        try {
+            while (modal.isDisplayed()) {
+                System.out.println("Modal sendo apresentado...");
 
-            if(!modal.isDisplayed()){
-                return;
+                if (!modal.isDisplayed()) {
+                    return;
+                }
             }
+        } catch (Exception e) {
+            espera(3);
         }
 
-        espera(3);
     }
 
 }
